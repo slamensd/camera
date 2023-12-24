@@ -9,14 +9,13 @@
 </head>
 <body>
 
-<!-- Button to Start the Camera -->
+<!-- Button to Start Camera or Image Upload -->
 <button id="startCameraBtn">Start Camera</button>
+<input type="file" id="imageInput" accept="image/*" style="display: none;">
 
 <!-- Screen 1: Capture Image -->
 <div id="screen1" class="screen" style="display: none;">
-    <video id="cameraStream" autoplay></video>
-    <button id="captureBtn">Capture</button>
-    <canvas id="snapshot" style="display:none;"></canvas>
+    <canvas id="snapshot"></canvas>
 </div>
 
 <!-- Screen 2: QR Code Scanner -->
