@@ -1,0 +1,161 @@
+/* styles.css */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background: #f0f0f0;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+.screen {
+  display: none; /* Initially hide all screens */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  border-radius: 20px;
+  text-align: center;
+  z-index: 10;
+  overflow-y: auto; /* Allow vertical scroll if needed */
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.close-icon {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  background: url('close-icon.png') no-repeat center center; /* Replace with actual close icon image */
+  background-size: 24px 24px;
+}
+
+#cameraStream, #snapshot, #qrCanvas {
+  height: 80vh; /* 80% of the viewport height */
+  width: auto; /* Maintain the aspect ratio */
+  border: 5px solid #00bcd4; /* Teal border */
+  box-sizing: border-box;
+  margin: 16px auto; /* Center align */
+}
+
+h1 {
+  color: #333;
+  font-size: 1.5em; /* Responsive font size */
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+button {
+  background-color: #00bcd4; /* Teal background */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  margin-top: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#rewardAnimation {
+  background-color: #00bcd4; /* Teal background */
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+#coinAnimation {
+  background-image: url('coin.png'); /* Coin image URL */
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 100px;
+  height: 100px;
+  margin: 20px auto;
+  animation: spinCoin 2s ease-in-out infinite;
+}
+
+.task-indicator {
+  font-size: 1em;
+  color: #333;
+  margin-top: 20px;
+}
+
+.text-area {
+  background-color: #ffcccb; /* Light pink background */
+  color: #333;
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 10px;
+  text-align: left;
+}
+
+.text-area p {
+  margin: 5px 0;
+}
+
+.text-area .qr-code {
+  text-align: center;
+  padding-top: 10px;
+}
+
+@keyframes spinCoin {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(360deg); }
+}
+
+@media (min-width: 601px) {
+  /* Adjust styles for larger screens */
+  .screen {
+    border-radius: 20px;
+    position: fixed; /* For larger screens, we position it fixed in the center */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 400px;
+    height: auto;
+    padding: 32px;
+  }
+
+  #cameraStream, #snapshot, #qrCanvas {
+    height: auto; /* Reset height for larger screens */
+    max-width: 100%;
+    max-height: 500px; /* Maximum height on larger screens */
+  }
+
+  .task-indicator {
+    font-size: 1.2em; /* Slightly larger font for task indicator on larger screens */
+  }
+
+  h1 {
+    font-size: 2em; /* Larger font size for titles on larger screens */
+  }
+
+  button {
+    padding: 12px 24px; /* Larger buttons for easier interaction on larger screens */
+    font-size: 1.2em;
+  }
+
+  .close-icon {
+    top: 32px;
+    right: 32px;
+    width: 32px;
+    height: 32px;
+    background-size: 32px 32px;
+  }
+
+  #rewardAnimation {
+    padding: 32px;
+    margin-top: 32px;
+  }
+
+  #coinAnimation {
+    width: 120px; /* Larger coin animation for larger screens */
+    height: 120px;
+  }
+}
