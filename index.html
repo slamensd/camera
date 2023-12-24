@@ -8,28 +8,36 @@
     <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
 </head>
 <body>
+    <!-- Screen 1: Camera View -->
+    <div id="screen1" class="screen">
+        <div class="header">
+            <h1>Camera App</h1>
+        </div>
+        <video id="cameraStream" autoplay playsinline></video>
+        <div class="navbar">
+            <button id="startCapture">Scan Product</button>
+        </div>
+    </div>
 
-<!-- Button to Start Camera or Image Upload -->
-<button id="startCameraBtn">Start Camera</button>
-<input type="file" id="imageInput" accept="image/*" style="display: none;">
+    <!-- Screen 2: Capture Image -->
+    <div id="screen2" class="screen">
+        <div class="header">
+            <h1>Camera App</h1>
+        </div>
+        <canvas id="snapshot"></canvas>
+        <div class="navbar">
+            <button id="scanQR">Scan QR Code</button>
+        </div>
+    </div>
 
-<!-- Screen 1: Capture Image -->
-<div id="screen1" class="screen" style="display: none;">
-    <canvas id="snapshot"></canvas>
-</div>
+    <!-- Screen 3: Reward Animation -->
+    <div id="screen3" class="screen">
+        <div class="reward">
+            <h1>Congrats! You've earned 50 points!</h1>
+            <!-- Place for reward animation or content -->
+        </div>
+    </div>
 
-<!-- Screen 2: QR Code Scanner -->
-<div id="screen2" class="screen" style="display: none;">
-    <canvas id="qrCanvas"></canvas>
-    <button id="scanBtn">Scan QR Code</button>
-</div>
-
-<!-- Screen 3: Reward Animation -->
-<div id="screen3" class="screen" style="display: none;">
-    <h1>Congrats! You've earned 50 points!</h1>
-    <!-- Place for reward animation or content -->
-</div>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

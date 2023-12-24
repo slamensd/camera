@@ -5,10 +5,52 @@ body, html {
   font-family: Arial, sans-serif;
   background: #f0f0f0;
   text-align: center;
+  height: 100%;
+  overflow: hidden;
+}
+
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  background: black;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.navbar {
+  background: black;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+}
+
+video, canvas {
+  max-height: calc(100% - 120px); /* Adjust as needed */
+  max-width: 100%;
+  border: 1px solid #ddd;
+  object-fit: cover;
 }
 
 button {
-  margin: 20px;
   padding: 10px 20px;
   font-size: 16px;
   background-color: #4CAF50;
@@ -18,18 +60,4 @@ button {
   cursor: pointer;
 }
 
-button:hover {
-  background-color: #45a049;
-}
-
-.screen {
-  display: none;
-  margin-top: 20px;
-}
-
-canvas {
-  max-width: 100%;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+/* Add any additional styles as needed */
