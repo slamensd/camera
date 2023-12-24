@@ -8,25 +8,25 @@
     <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
 </head>
 <body>
-    <!-- Screen 1: Camera View -->
+    <!-- Screen 1: Scan Product -->
     <div id="screen1" class="screen">
         <div class="header">
-            <h1>Camera App</h1>
+            <h1>Scan Product</h1>
         </div>
-        <video id="cameraStream" autoplay playsinline></video>
-        <div class="navbar">
-            <button id="startCapture">Scan Product</button>
+        <div class="camera-container">
+            <video id="cameraStream" autoplay playsinline></video>
+            <button id="captureBtn">Capture</button>
         </div>
     </div>
 
-    <!-- Screen 2: Capture Image -->
+    <!-- Screen 2: Scan QR Code -->
     <div id="screen2" class="screen">
         <div class="header">
-            <h1>Camera App</h1>
+            <h1>Scan QR Code</h1>
         </div>
-        <canvas id="snapshot"></canvas>
-        <div class="navbar">
-            <button id="scanQR">Scan QR Code</button>
+        <div class="camera-container">
+            <video id="qrCameraStream" autoplay playsinline></video>
+            <button id="scanQRBtn">Scan QR Code</button>
         </div>
     </div>
 

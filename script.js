@@ -1,47 +1,50 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const screen1 = document.getElementById('screen1');
+  const screen2 = document.getElementById('screen2');
+  const screen3 = document.getElementById('screen3');
   const cameraStream = document.getElementById('cameraStream');
-  const snapshotCanvas = document.getElementById('snapshot');
-  const scanQRBtn = document.getElementById('scanQR');
-  const startCaptureBtn = document.getElementById('startCapture');
-  const screens = document.querySelectorAll('.screen');
+  const qrCameraStream = document.getElementById('qrCameraStream');
+  const captureBtn = document.getElementById('captureBtn');
+  const scanQRBtn = document.getElementById('scanQRBtn');
 
-  function showScreen(screenIndex) {
-    screens.forEach((screen, index) => {
-      screen.style.display = index === screenIndex ? 'flex' : 'none';
-    });
+  function showScreen(screenElement) {
+    screen1.style.display = 'none';
+    screen2.style.display = 'none';
+    screen3.style.display = 'none';
+    screenElement.style.display = 'block';
   }
 
-  function startCamera() {
+  function startCamera(stream, targetVideoElement) {
+    targetVideoElement.srcObject = stream;
+    targetVideoElement.play();
+    showScreen(screen2);
+  }
+
+  function startQRScanner(stream) {
+    startCamera(stream, qrCameraStream);
+  }
+
+  captureBtn.addEventListener('click', () => {
     navigator.mediaDevices
       .getUserMedia({ video: { facingMode: 'environment' } })
       .then((stream) => {
-        cameraStream.srcObject = stream;
-        cameraStream.play();
-        showScreen(0);
+        startCamera(stream, cameraStream);
       })
       .catch((err) => {
         console.error('Camera access error:', err);
         alert('Error accessing the camera. Please make sure you have given the necessary permissions.');
       });
-  }
-
-  startCaptureBtn.addEventListener('click', () => {
-    startCamera();
   });
 
   scanQRBtn.addEventListener('click', () => {
-    const context = snapshotCanvas.getContext('2d');
-    context.drawImage(cameraStream, 0, 0, snapshotCanvas.width, snapshotCanvas.height);
-    showScreen(1);
+    navigator.mediaDevices
+      .getUserMedia({ video: { facingMode: 'environment' } })
+      .then((stream) => {
+        startQRScanner(stream);
+      })
+      .catch((err) => {
+        console.error('Camera access error:', err);
+        alert('Error accessing the camera. Please make sure you have given the necessary permissions.');
+      });
   });
-
-  snapshotCanvas.addEventListener('click', () => {
-    showScreen(2); // Transition to the reward animation screen
-    startRewardAnimation();
-  });
-
-  function startRewardAnimation() {
-    // Placeholder for reward animation logic
-    console.log('Starting reward animation...');
-  }
 });
