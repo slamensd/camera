@@ -2,6 +2,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const video = document.createElement('video');
     const canvasElement = document.createElement('canvas');
+    const canvas = canvasElement.getContext('2d');
     const scannerArea = document.querySelector('.scanner-area');
     const photoLibraryButton = document.getElementById('photo-library');
     const settingsButton = document.getElementById('settings');
@@ -11,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     video.style.width = '100%';
     video.style.height = 'auto';
 
-    // Insert canvas element into the DOM
+    // Insert canvas element into the DOM, but do not display it
     scannerArea.appendChild(canvasElement);
     canvasElement.style.display = 'none';
 
@@ -21,37 +22,41 @@ document.addEventListener('DOMContentLoaded', function() {
             video.srcObject = stream;
             video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
             video.play();
-            requestAnimationFrame(tick);
+            requestAnimationFrame(scanQRCode);
         })
         .catch(function(err) {
             console.error("Error accessing the camera", err);
         });
 
-    function tick() {
+    function scanQRCode() {
         if (video.readyState === video.HAVE_ENOUGH_DATA) {
             canvasElement.height = video.videoHeight;
             canvasElement.width = video.videoWidth;
-            const ctx = canvasElement.getContext('2d');
-            ctx.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
+            canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
+            const imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
             
-            // Here we would use the jsQR library to scan the canvas for QR codes
-            // For demonstration, let's assume it finds a QR code and we call playInterstitialAnimation
-            // In production, you would replace this with actual QR code scanning logic
-            const code = true; // This should be the result from jsQR
-            if (code) {
+            // Use jsQR to decode the image data
+            const qrCode = jsQR(imageData.data, imageData.width, imageData.height, {
+                inversionAttempts: "dontInvert",
+            });
+            
+            if (qrCode) {
+                console.log("Found QR code", qrCode.data);
+                // Process the QR code data, stop the camera, and play the animation
                 video.pause();
                 stream.getTracks().forEach(track => track.stop()); // Stop camera stream
-                playInterstitialAnimation();
+                playInterstitialAnimation(qrCode.data);
             } else {
-                requestAnimationFrame(tick); // Keep scanning for QR codes
+                requestAnimationFrame(scanQRCode); // No QR code found, continue scanning
             }
         }
     }
 
-    function playInterstitialAnimation() {
+    function playInterstitialAnimation(qrData) {
         // Placeholder for full-screen interstitial animation
         // Implement the animation using CSS or JavaScript here
-        console.log('Playing interstitial animation...');
+        console.log('Playing interstitial animation with QR Code data:', qrData);
+        // Here you might want to redirect the user or display the QR code data
     }
 
     // Event listeners for touch events on bottom icons
