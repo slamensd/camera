@@ -3,41 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Camera App</title>
+    <title>Product Capture & QR Scan App</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
+    <!-- Include external QR code scanning library (jsQR for example) -->
+    <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.min.js"></script>
 </head>
 <body>
-    <!-- Screen 1: Scan Product -->
-    <div id="screen1" class="screen">
-        <div class="header">
-            <h1>Scan Product</h1>
+    <header>
+        <h1>Product Scanner</h1>
+    </header>
+    <main id="main-content">
+        <!-- Home Screen -->
+        <div id="home-screen" class="screen">
+            <button id="capture-btn">Capture Product</button>
         </div>
-        <div class="camera-container">
-            <video id="cameraStream" autoplay playsinline></video>
-            <button id="captureBtn">Capture</button>
+        
+        <!-- Camera Screen (hidden initially) -->
+        <div id="camera-screen" class="screen hidden">
+            <!-- Camera view will be inserted here -->
         </div>
-    </div>
 
-    <!-- Screen 2: Scan QR Code -->
-    <div id="screen2" class="screen">
-        <div class="header">
-            <h1>Scan QR Code</h1>
+        <!-- QR Code Scan Screen (hidden initially) -->
+        <div id="qr-screen" class="screen hidden">
+            <button id="scan-btn">Scan QR Code</button>
+            <!-- QR code viewfinder will be here -->
         </div>
-        <div class="camera-container">
-            <video id="qrCameraStream" autoplay playsinline></video>
-            <button id="scanQRBtn">Scan QR Code</button>
-        </div>
-    </div>
 
-    <!-- Screen 3: Reward Animation -->
-    <div id="screen3" class="screen">
-        <div class="reward">
-            <h1>Congrats! You've earned 50 points!</h1>
-            <!-- Place for reward animation or content -->
+        <!-- Reward Screen (hidden initially) -->
+        <div id="reward-screen" class="screen hidden">
+            <p>Congratulations! You earned 50 points.</p>
         </div>
-    </div>
-
+    </main>
+    <nav>
+        <button>Home</button>
+        <button>Profile</button>
+        <button>Settings</button>
+    </nav>
     <script src="script.js"></script>
 </body>
 </html>
