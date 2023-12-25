@@ -3,42 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Capture & QR Scan App</title>
+    <title>QR Code Scanner</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Include external QR code scanning library (jsQR for example) -->
-    <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.min.js"></script>
 </head>
 <body>
-    <header>
-        <h1>Product Scanner</h1>
-    </header>
-    <main id="main-content">
-        <!-- Home Screen -->
-        <div id="home-screen" class="screen">
-            <button id="capture-btn">Capture Product</button>
+    <div id="app">
+        <div class="navbar">
+            <!-- This area will be styled to look like a status bar -->
         </div>
-        
-        <!-- Camera Screen (hidden initially) -->
-        <div id="camera-screen" class="screen hidden">
-            <!-- Camera view will be inserted here -->
+        <div class="scanner-instructions">
+            <p>Place the code inside area<br>Scanning will start automatically</p>
         </div>
-
-        <!-- QR Code Scan Screen (hidden initially) -->
-        <div id="qr-screen" class="screen hidden">
-            <button id="scan-btn">Scan QR Code</button>
-            <!-- QR code viewfinder will be here -->
+        <div class="scanner-area">
+            <!-- Corner indicators will be added using pseudo-elements -->
         </div>
-
-        <!-- Reward Screen (hidden initially) -->
-        <div id="reward-screen" class="screen hidden">
-            <p>Congratulations! You earned 50 points.</p>
+        <div class="bottom-icons">
+            <button id="photo-library" aria-label="Photo Library"></button>
+            <button id="settings" aria-label="Settings"></button>
         </div>
-    </main>
-    <nav>
-        <button>Home</button>
-        <button>Profile</button>
-        <button>Settings</button>
-    </nav>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>

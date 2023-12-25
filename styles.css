@@ -1,0 +1,69 @@
+/* styles.css */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-between;
+}
+
+.navbar {
+    background-color: #e9e9e9;
+    height: 20px; /* Placeholder for actual device status bar height */
+    /* Additional pseudo-elements for network status, battery, etc. can be added */
+}
+
+.scanner-instructions {
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+    color: #333;
+}
+
+.scanner-area {
+    flex-grow: 1;
+    border: 5px dashed red; /* Dashed line for scanner area */
+    border-radius: 10px; /* Slightly rounded corners for the scanner area */
+    margin: 20px;
+    position: relative;
+    /* Before and After pseudo-elements for corner brackets */
+}
+
+.bottom-icons {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 20px;
+}
+
+.bottom-icons button {
+    background: none;
+    border: none;
+    height: 50px;
+    width: 50px;
+    /* Background images for icons can be added here */
+    /* Use touch-friendly tap targets */
+}
+
+/* Style for the scanning guide */
+.scanner-area:before,
+.scanner-area:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 80%;
+    height: 2px;
+    background: red;
+    /* Adjust the position to match the mockup */
+}
+
+/* Additional responsive styles for mobile devices */
+@media (max-width: 768px) {
+    /* Responsive adjustments for smaller screens */
+}
